@@ -33,7 +33,7 @@ ciricle.forEach((item, index, arr) => {
       item.offsetLeft + item.offsetWidth / 2
     )} ${Math.trunc(item.offsetTop + item.offsetHeight / 2)}Q ${Math.trunc(
       item.offsetLeft * 1.2
-    )} ${Math.trunc(item.offsetTop * 1.2)} ${Math.trunc(
+    )} ${Math.trunc(item.offsetTop * 1.3)} ${Math.trunc(
       section[index].offsetWidth / 2
     )} ${Math.trunc(
       section[index].offsetTop + section[index].offsetHeight
@@ -57,45 +57,47 @@ ciricle.forEach((item, index, arr) => {
 // 		T${ciricle[index + 1].offsetLeft + ciricle[index + 1].offsetWidth / 2} ${
 // 	ciricle[index + 1].offsetTop + ciricle[index + 1].offsetHeight / 2
 //   }`;
-console.log(path2);
 
 const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-console.log(section[0].offsetWidth, section[0].offsetHeight);
+
 path.setAttributeNS(null, "d", path2);
-console.log(
-  document.documentElement.scrollHeight,
-  document.documentElement.scrollWidth
-);
+
 // path.setAttribute("D", "M165 0Q235 37 165 80Q86 114 165 147");
 path.setAttributeNS(null, "stroke", "#387298");
 path.setAttributeNS(null, "fill", "transparent");
 path.setAttributeNS(null, "stroke-linecap", "round");
 svg.append(path);
 document.body.append(svg);
-svg.style = `width: ${document.documentElement.scrollWidth}; height: ${document.documentElement.scrollHeight}; position: absolute; left:0;top:0`;
+window.onload = function () {
+  console.log(path.offsetTop);
+  const maxHeight = section[section.length - 1].offsetTop - section[0].offsetTop;
+  svg.style = `width: 100vw; height: ${section[section.length - 1].offsetTop + section[section.length - 1].offsetHeight}px; position: absolute; left:0;top:0`;
+};
 
+console.log(document.body.offsetHeight);
 path.style += `fill-rule:evenodd;
  stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;
  stroke-miterlimit:4;stroke-dasharray:10;stroke-dashoffset:0`;
 
 const mover = document.createElement("img");
-mover.src =
-  "./img/delivery.png";
+mover.src = "./img/delivery.png";
 mover.className = "mover";
-console.log(`offset-path: path("${path2}")`);
+
 //mover.style.cssText += 'offset-path: path("M898 1803Q 1000.8 2086.7999999999997 598.5 2404T299 3005M299 3005Q 282 3529.2 598.5 3606T898 4207")'
 
 mover.style.cssText += `offset-path:path("${path2}")`;
-console.log(window.scrollY);
-addEventListener("scroll", (e) => {
- 
-  let maxHeight = 0;
-  const startY = ciricle[0].offsetTop+200;
-  const endY = ciricle[ciricle.length-1].offsetTop;
 
-  console.log(startY, endY, window.scrollY)
-  mover.style.offsetDistance = +((window.scrollY+window.innerHeight/2-startY) / (endY-startY)).toFixed(2)*100 + "%"
+addEventListener("scroll", (e) => {
+  if (
+    window.scrollY > section[0].offsetTop &&
+    section[section.length - 1].offsetTop > window.scrollY
+  ) {
+    const currect = window.scrollY - section[0].offsetTop;
+    const maxHeight =
+      section[section.length - 1].offsetTop - section[0].offsetTop;
+    mover.style.offsetDistance = (currect / maxHeight) * 100 + "%";
+  }
 });
-mover.style.offsetDistance = "20%";
+
 document.body.append(mover);

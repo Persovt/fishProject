@@ -70,13 +70,13 @@ body {
 .header__title::after {
   content: "";
   position: absolute;
-  background-image: url(./img/bg-title.png);
-  background-size: 100% 100%;
-  background-position: 35px center;
+  background-image: url(./img/test2.svg);
+  background-size: contain;
+  background-position: left center;
   background-repeat: no-repeat;
   width: 200%;
   height: 130%;
-  left: -25%;
+  left: -45%;
   top: -10%;
   z-index: -99;
 }
@@ -187,21 +187,30 @@ body {
 }
 .ciricle {
   position: relative;
-  width: 128px;
-  height: 128px;
+  width: 512px;
+  height: 512px;
   border-radius: 50%;
-  background-color: #387298;
+  border: 8px solid #387298;
   z-index: 9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+.ciricle__image {
+  width: 70%;
+  height: 70%;
+  z-index: 11;
 }
 .ciricle::after {
   content: "";
   border-radius: 50%;
   position: absolute;
   background-color: white;
-  width: 80%;
-  height: 80%;
-  top: 10%;
-  left: 10%;
+  width: 100%;
+  height: 100%;
+  /* top: 10%; */
+  /* left: 10%; */
   z-index: 10;
 }
 .right-split::after {
@@ -306,10 +315,12 @@ body {
   left: 0;
 }
 .mover {
-  width: 71px;
+  width: 256px;
   position: absolute;
   left: 0;
   top: 0;
-  height: 54px;
+  height: 256px;
+  object-fit: contain;
   offset-rotate: 0deg;
+  transition: 1s all;
 }
