@@ -31,6 +31,25 @@ body {
   align-items: center;
   margin: 0;
   transition: 0.5s all;
+/*  
+  animation: 3s  ease-in-out 20s infinite  slider; */
+}
+@keyframes slider {
+  0% {
+    left: 0;
+  }
+  50%{
+    left: -100vw;
+  }
+  100%{
+    left: -200vw;
+  }
+}
+.bubble-left{
+  border-radius:50% 0 0 50%;
+}
+.bubble-right{
+  border-radius: 0 50% 50% 0;
 }
 .slider__slide {
   list-style: none;
@@ -244,6 +263,7 @@ body {
   padding: 0 10%;
 }
 .footer {
+  margin-top: 25px;
   background: #387298;
   min-height: 100px;
 }
@@ -313,6 +333,25 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+}
+.split-block-right::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top: 100vh solid white;
+  border-left: 200px solid #387298;
+  width: 0;
+  
+}
+.split-block-left::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top: 100vh solid white;
+  border-right: 200px solid #387298;
+  width: 0;
 }
 .mover {
   width: 256px;

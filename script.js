@@ -9,7 +9,7 @@ function slider() {
   if (sliderWidth - windowWidth > left) left += windowWidth;
   else left = 0;
 
-  console.log(sliderWidth - windowWidth, left, "Console");
+ 
   sliderList.style.left = `-${left}px`;
 
   nextSlide();
@@ -17,7 +17,7 @@ function slider() {
 nextSlide();
 const ciricle = document.querySelectorAll(".ciricle");
 const section = document.querySelectorAll("section");
-console.log(ciricle);
+
 let path2 = "";
 ciricle.forEach((item, index, arr) => {
   if (index != arr.length - 1) {
@@ -32,8 +32,8 @@ ciricle.forEach((item, index, arr) => {
     path2 += `M${Math.trunc(
       item.offsetLeft + item.offsetWidth / 2
     )} ${Math.trunc(item.offsetTop + item.offsetHeight / 2)}Q ${Math.trunc(
-      item.offsetLeft * 1.2
-    )} ${Math.trunc(item.offsetTop * 1.3)} ${Math.trunc(
+      item.offsetLeft + item.offsetWidth / 2
+    )} ${section[index].offsetTop + section[index].offsetHeight} ${Math.trunc(
       section[index].offsetWidth / 2
     )} ${Math.trunc(
       section[index].offsetTop + section[index].offsetHeight
@@ -46,18 +46,21 @@ ciricle.forEach((item, index, arr) => {
 });
 //955 2149
 //199.769 3416.8
-// path2 += `M${item.offsetLeft + item.offsetWidth / 2} ${
-// 	item.offsetTop + item.offsetHeight / 2
-//   }
-// 		Q ${section[index].offsetWidth / 1.25} ${
-// 	section[index].offsetHeight * 1.85
-//   } ${section[index].offsetWidth / 2} ${
-// 	section[index].offsetTop + section[index].offsetHeight
-//   }
-// 		T${ciricle[index + 1].offsetLeft + ciricle[index + 1].offsetWidth / 2} ${
-// 	ciricle[index + 1].offsetTop + ciricle[index + 1].offsetHeight / 2
-//   }`;
 
+
+// path2 += `M${Math.trunc(
+//   item.offsetLeft + item.offsetWidth / 2
+// )} ${Math.trunc(item.offsetTop + item.offsetHeight / 2)}Q ${Math.trunc(
+//   item.offsetLeft * 1.2
+// )} ${Math.trunc(item.offsetTop * 1.3)} ${Math.trunc(
+//   section[index].offsetWidth / 2
+// )} ${Math.trunc(
+//   section[index].offsetTop + section[index].offsetHeight
+// )}T${Math.trunc(
+//   ciricle[index + 1].offsetLeft + ciricle[index + 1].offsetWidth / 2
+// )} ${Math.trunc(
+//   ciricle[index + 1].offsetTop + ciricle[index + 1].offsetHeight / 2
+// )}`;
 const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
@@ -89,15 +92,15 @@ mover.className = "mover";
 mover.style.cssText += `offset-path:path("${path2}")`;
 
 addEventListener("scroll", (e) => {
-  if (
-    window.scrollY > section[0].offsetTop &&
-    section[section.length - 1].offsetTop > window.scrollY
-  ) {
+  // if (
+  //   window.scrollY > section[0].offsetTop &&
+  //   section[section.length - 1].offsetTop > window.scrollY
+  // ) {
     const currect = window.scrollY - section[0].offsetTop;
     const maxHeight =
       section[section.length - 1].offsetTop - section[0].offsetTop;
     mover.style.offsetDistance = (currect / maxHeight) * 100 + "%";
-  }
+ // }
 });
 
 document.body.append(mover);
