@@ -12,6 +12,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 25px;
 }
 .header .wrapper {
 }
@@ -30,25 +31,28 @@ body {
   display: flex;
   align-items: center;
   margin: 0;
-  transition: 0.5s all;
-/*  
+  transition: 0.5s all ease-out;
+  filter: blur(2px);
+  /*  
   animation: 3s  ease-in-out 20s infinite  slider; */
 }
 @keyframes slider {
   0% {
     left: 0;
   }
-  50%{
+  50% {
     left: -100vw;
   }
-  100%{
+  100% {
     left: -200vw;
   }
 }
-.bubble-left{
-  border-radius:50% 0 0 50%;
+.bubble-left {
+  padding: 0 5% 0 20%;
+  border-radius: 50% 0 0 50%;
 }
-.bubble-right{
+.bubble-right {
+  padding: 0 20% 0 5%;
   border-radius: 0 50% 50% 0;
 }
 .slider__slide {
@@ -102,13 +106,21 @@ body {
 .btn__buy {
   font-family: "Roboto";
   font-size: 1.2em;
-  background-color: rgba(0, 212, 255, 0.2);
+  background-color: rgba(0, 212, 255, 0.7);
   border: 3px solid rgb(0, 212, 255);
-  color: rgb(0, 212, 255);
+  color: white;
   border-radius: 10px;
-  width: 220px;
-  height: 70px;
+  width: 280px;
+  height: 90px;
 }
+.about__img {
+  margin: 0 auto;
+  max-width: 80%;
+  object-fit: contain;
+  border-radius: 10px;
+  max-height: 45%;
+}
+
 .btn__buy:hover {
   cursor: pointer;
 
@@ -179,7 +191,6 @@ body {
   text-align: center;
 }
 .about {
-  padding: 0 10%;
   position: relative;
   background: #387298;
   justify-content: center;
@@ -342,7 +353,6 @@ body {
   border-top: 100vh solid white;
   border-left: 200px solid #387298;
   width: 0;
-  
 }
 .split-block-left::after {
   content: "";
