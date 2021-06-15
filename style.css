@@ -115,10 +115,10 @@ body {
 }
 .about__img {
   margin: 0 auto;
-  max-width: 80%;
-  object-fit: contain;
+  width: 65%;
+  
   border-radius: 10px;
-  max-height: 45%;
+ 
 }
 
 .btn__buy:hover {
